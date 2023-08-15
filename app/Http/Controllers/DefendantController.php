@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Defendant;
+use App\Models\Option_answer;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
@@ -77,8 +79,27 @@ class DefendantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        $query = Defendant::query()
+            ->leftJoin('answers', 'answers.defendants_id', '=',
+                'defendants.id')
+            ->where('defendants.id', '=', $id)
+            ->select('answers.id')
+            ->get()
+            ->toArray();
+
+        $text = [];
+        foreach ($query as $item) {
+            $text[] = $item['id'];
+        }
+        Option_answer::query()
+            ->whereIn('answers_id', $text)
+            ->delete();
+
+        Answer::query()->where('defendants_id', '=', $id)->delete();
+        Defendant::query()->where('id', '=', $id)->delete();
+
+        return redirect()->route('defendants');
     }
 }

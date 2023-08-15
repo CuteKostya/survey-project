@@ -20,8 +20,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisterController::class, 'index'])
         ->middleware('guest')
@@ -51,8 +49,20 @@ Route::middleware('auth')->group(function () {
         ->name('defendants');
     Route::get('defendants/{defendant}', [DefendantController::class, 'show'])
         ->name('defendants.show');
+    Route::get('defendants/{defendant}/edit',
+        [DefendantController::class, 'edit'])
+        ->name('defendants.edit');
+    Route::delete('defendants/{defendant}',
+        [DefendantController::class, 'delete'])
+        ->name('defendants.delete');
+
 
     Route::get('answers/{answer}', [AnswerController::class, 'show'])
         ->name('answers.show');
 
+    Route::get('answers/{answer}/edit', [AnswerController::class, 'edit'])
+        ->name('answers.edit');
+
+    Route::delete('answers/{answer}', [AnswerController::class, 'delete'])
+        ->name('answers.delete');
 });
