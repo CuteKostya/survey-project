@@ -1,4 +1,4 @@
-@props(['color' => 'successcol', 'size' => ''])
+@props(['color' => 'primary', 'size' => ''])
 
 <button {{ $attributes->class([
     "btn btn-{$color}", ($size ? "btn-{$size}" : ''),
