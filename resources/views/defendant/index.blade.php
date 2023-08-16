@@ -19,12 +19,17 @@
             <tbody>
             @foreach($surveys as $survey)
                 <tr>
-                        <x-defendant.field-index :survey="$survey"/>
-                 
+                    <x-defendant.field-index :survey="$survey"/>
+
                 </tr>
             @endforeach
             </tbody>
         </table>
+
+        <x-button href="{{route('defendants')}}">
+            {{__('Создать')}}
+        </x-button>
+
         {{$surveys->links()}}
     @endif
 @endsection
