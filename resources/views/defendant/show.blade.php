@@ -31,7 +31,7 @@
                     <tbody>
                     @foreach($defendants as $defendant)
                         <tr>
-                                <x-defendant.field :defendant="$defendant"/>
+                            <x-defendant.field :defendant="$defendant"/>
 
                         </tr>
                     @endforeach

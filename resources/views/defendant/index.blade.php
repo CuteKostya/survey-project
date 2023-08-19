@@ -26,7 +26,7 @@
             </tbody>
         </table>
 
-        <x-button href="{{route('defendants')}}">
+        <x-button href="{{route('defendants.create')}}">
             {{__('Создать')}}
         </x-button>
 

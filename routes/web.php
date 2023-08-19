@@ -47,11 +47,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('defendants', [DefendantController::class, 'index'])
         ->name('defendants');
+
+    Route::get('defendants/create', [DefendantController::class, 'create'])
+        ->name('defendants.create');
+    Route::post('defendants', [DefendantController::class, 'defendants'])
+        ->name('defendants.store');
     Route::get('defendants/{defendant}', [DefendantController::class, 'show'])
         ->name('defendants.show');
-    Route::get('defendants/{defendant}/edit',
-        [DefendantController::class, 'edit'])
-        ->name('defendants.edit');
+
     Route::delete('defendants/{defendant}',
         [DefendantController::class, 'delete'])
         ->name('defendants.delete');

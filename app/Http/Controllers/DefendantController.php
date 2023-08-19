@@ -63,17 +63,17 @@ class DefendantController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function store(Request $request)
     {
-        //
+        return redirect()->route('defendants');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function create()
     {
-        //
+        return view('defendant.create');
     }
 
     /**
