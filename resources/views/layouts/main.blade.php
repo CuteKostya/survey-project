@@ -10,6 +10,86 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
+
+    <script>
+        var idQuestion = 0;
+        var tg = ["text", "checkBox", "radio"];
+
+
+        function addQuestion(el) {
+            var questionLabel = document.createElement("label");
+            questionLabel.innerText = 'Вопрос';
+
+            var questionInput = document.createElement("input");
+            questionInput.id = "questionInput" + idQuestion;
+
+            var spisok = document.createElement("select");
+            spisok.id = "questionSelect" + idQuestion;
+
+            spisok.setAttribute("onchange", "changeSelect(this)");
+
+            spisok.replaceChildren(...tg.map(i => {
+                e = document.createElement("option");
+
+                e.innerText = i;
+                return e
+            }));
+
+            var container = document.createElement("div");
+            container.id = "container" + idQuestion;
+
+            content.append(document.createElement("hr"));
+            content.append(questionLabel);
+            content.append(document.createElement("br"));
+            content.append(questionInput);
+            content.append(document.createElement("br"));
+            content.append(spisok);
+            content.append(document.createElement("br"));
+            content.append(container);
+            content.append(document.createElement("br"));
+
+            idQuestion++;
+        }
+
+        function changeSelect(el) {
+
+            var currentId = el.id.substring(14);
+            var sel = document.getElementById(el.id).selectedIndex;
+
+            if (sel === 0) {
+                document.getElementById(("container" + currentId)).innerHTML = '';
+            } else if (sel === 1 || 2) {
+                document.getElementById(("container" + currentId)).innerHTML = '';
+
+                var questionInput = document.createElement("input");
+                questionInput.type = "button";
+                questionInput.value = "addInput";
+
+                questionInput.setAttribute("onclick", "addCheckbox(this)");
+                questionInput.id = "button" + currentId;
+                var text = ("container" + currentId + ".append(questionInput)");
+                eval(text);
+            }
+
+        }
+
+        function addCheckbox(el) {
+
+            var currentId = el.id.substring(6);
+            console.log(currentId);
+
+            var br = document.createElement("br");
+            var text = ("container" + currentId + ".append(br)");
+            eval(text);
+
+            var questionInput = document.createElement("input");
+            questionInput.type = "text";
+            questionInput.id = "" + currentId + "" + 1;
+            text = ("container" + currentId + ".append(questionInput)");
+            eval(text);
+        }
+    </script>
+
     <title>@yield('title')</title>
 </head>
 

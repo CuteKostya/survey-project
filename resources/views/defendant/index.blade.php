@@ -26,9 +26,9 @@
             </tbody>
         </table>
 
-        <x-button href="{{route('defendants.create')}}">
+        <a href="{{route('defendants.create')}}">
             {{__('Создать')}}
-        </x-button>
+        </a>
 
         {{$surveys->links()}}
     @endif
