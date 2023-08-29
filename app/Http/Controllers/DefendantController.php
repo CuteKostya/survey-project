@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Answer;
 use App\Models\Defendant;
+use App\Models\Option;
 use App\Models\Option_answer;
+use App\Models\Question;
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
@@ -65,7 +67,26 @@ class DefendantController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $surveys = Survey::query()->create([
+            'title' => $request->name,
+            'description' => $request->description,
+        ]);
+        $mass = current($request->all('question'));
+        foreach ($mass as $item) {
+            $questions = Question::query()->create([
+                'surveys_id' => $surveys->id,
+                'question' => $item['input'],
+                'type' => $item['select'],
+            ]);
+            foreach ($item as $id => $it) {
+                if (is_numeric($id)) {
+                    $option = Option::query()->create([
+                        'questions_id' => $questions->id,
+                        'option' => $it,
+                    ]);
+                }
+            }
+        }
         return redirect()->route('defendants');
     }
 

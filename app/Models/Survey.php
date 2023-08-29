@@ -17,5 +17,6 @@ class Survey extends Model
         = [
             'title',
             'description',
+            'img',
         ];
 }

@@ -20,7 +20,6 @@
             @foreach($surveys as $survey)
                 <tr>
                     <x-defendant.field-index :survey="$survey"/>
-
                 </tr>
             @endforeach
             </tbody>

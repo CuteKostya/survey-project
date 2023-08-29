@@ -13,7 +13,7 @@
 
     <script>
         var idQuestion = 0;
-        var tg = ["text", "checkBox", "radio"];
+        var tg = ["text", "checkbox", "radio"];
         let massCountInput = [];
 
 

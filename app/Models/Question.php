@@ -18,15 +18,8 @@ class Question extends Model
     protected $fillable
         = [
             'question',
-            'text',
             'type',
-            'options'
+            'surveys_id',
         ];
-    public static array $rules
-        = [
-            'question' => ['nullable', 'string'],
-            'text' => ['nullable', 'string'],
-            'type' => ['nullable', 'string'],
-            'options' => ['nullable', 'string'],
-        ];
+
 }
