@@ -21,7 +21,6 @@
                 </div>
                 <x-input type="button" value="Добавить вопрос" onclick="addQuestion(this)"/>
 
-  
                 <x-button type="submit">
                     {{ __('Создать опрос') }}
                 </x-button>

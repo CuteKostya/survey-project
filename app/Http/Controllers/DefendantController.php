@@ -65,6 +65,7 @@ class DefendantController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         return redirect()->route('defendants');
     }
 

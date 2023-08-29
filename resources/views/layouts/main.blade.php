@@ -14,6 +14,7 @@
     <script>
         var idQuestion = 0;
         var tg = ["text", "checkBox", "radio"];
+        let massCountInput = [];
 
 
         function addQuestion(el) {
@@ -22,9 +23,11 @@
 
             var questionInput = document.createElement("input");
             questionInput.id = "questionInput" + idQuestion;
+            questionInput.name = "question[" + idQuestion + "][input]";
 
             var spisok = document.createElement("select");
             spisok.id = "questionSelect" + idQuestion;
+            spisok.name = "question[" + idQuestion + "][select]";
 
             spisok.setAttribute("onchange", "changeSelect(this)");
 
@@ -37,6 +40,7 @@
 
             var container = document.createElement("div");
             container.id = "container" + idQuestion;
+            container.name = "container" + idQuestion;
 
             content.append(document.createElement("hr"));
             content.append(questionLabel);
@@ -48,6 +52,7 @@
             content.append(container);
             content.append(document.createElement("br"));
 
+            massCountInput[idQuestion] = 0;
             idQuestion++;
         }
 
@@ -67,6 +72,7 @@
 
                 questionInput.setAttribute("onclick", "addCheckbox(this)");
                 questionInput.id = "button" + currentId;
+
                 var text = ("container" + currentId + ".append(questionInput)");
                 eval(text);
             }
@@ -84,9 +90,11 @@
 
             var questionInput = document.createElement("input");
             questionInput.type = "text";
-            questionInput.id = "" + currentId + "" + 1;
+            questionInput.id = "question[" + currentId + "][" + massCountInput[currentId] + "]";
+            questionInput.name = "question[" + currentId + "][" + massCountInput[currentId] + "]";
             text = ("container" + currentId + ".append(questionInput)");
             eval(text);
+            massCountInput[currentId]++;
         }
     </script>
 

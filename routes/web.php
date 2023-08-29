@@ -50,7 +50,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('defendants/create', [DefendantController::class, 'create'])
         ->name('defendants.create');
-    Route::post('defendants', [DefendantController::class, 'defendants'])
+    Route::post('defendants', [DefendantController::class, 'store'])
         ->name('defendants.store');
     Route::get('defendants/{defendant}', [DefendantController::class, 'show'])
         ->name('defendants.show');
