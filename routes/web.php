@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
         ->name('surveys.store');
     Route::get('surveys/{survey}', [SurveyController::class, 'show'])
         ->name('surveys.show');
+    Route::delete('surveys/{survey}', [SurveyController::class, 'destroy'])
+        ->name('surveys.destroy');
 
     Route::get('defendants', [DefendantController::class, 'index'])
         ->name('defendants');
@@ -54,7 +56,9 @@ Route::middleware('auth')->group(function () {
         ->name('defendants.store');
     Route::get('defendants/{defendant}', [DefendantController::class, 'show'])
         ->name('defendants.show');
-
+    Route::get('defendants/{defendant}/edit',
+        [DefendantController::class, 'edit'])
+        ->name('defendants.edit');
     Route::delete('defendants/{defendant}',
         [DefendantController::class, 'delete'])
         ->name('defendants.delete');
